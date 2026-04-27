@@ -154,7 +154,57 @@
             display: none; position: fixed; bottom: 40px; right: 40px; background-color: var(--primary); color: #000; font-weight: 800; padding: 15px 25px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: pointer; z-index: 999; transition: transform 0.2s, background-color 0.2s; border: none; font-size: 1rem;
         }
         #floating-back-btn:hover { transform: translateY(-5px); background-color: var(--primary-hover); }
+				/* =========================================
+           모바일 반응형 처리 (화면 너비 768px 이하일 때 적용)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. 목차 리스트 모바일 세로 배치 최적화 (겹침/밀림 방지) */
+            .curriculum-list li { 
+                flex-direction: column;  /* 요소들을 가로에서 세로 배치로 변경 */
+                align-items: flex-start; /* 왼쪽 정렬 */
+                min-height: auto;        /* PC용 고정 높이 해제 */
+                padding: 15px 20px;
+                gap: 8px;                /* 위아래 간격 축소 */
+            }
+            .curriculum-list li > div {
+                width: 100%;
+                align-items: flex-start; /* 제목이 2줄이 될 경우 상단 맞춤 */
+            }
+            .lesson-title {
+                white-space: normal;     /* 제목 줄바꿈 허용 */
+                word-break: keep-all;    /* 단어 단위로 깔끔하게 줄바꿈 */
+                line-height: 1.4;
+            }
+            .lesson-desc {
+                width: 100%;
+                text-align: left;        /* 설명 우측 정렬을 좌측으로 변경 */
+                padding-left: 50px;      /* 주차 뱃지(Week Num) 너비만큼 들여쓰기 */
+                white-space: normal;     /* 설명 줄바꿈 허용 */
+                word-break: keep-all;
+                line-height: 1.4;
+                margin-top: 2px;
+            }
 
+            /* 2. 타이틀 폰트 크기 축소 */
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; padding: 0 10px; }
+            .lecture-title { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; margin: 35px 0 20px 0; }
+            
+            /* 3. 네비게이션 & 기타 여백 조정 */
+            nav { padding: 12px 15px; }
+            .logo { font-size: 1.1rem; }
+            .theme-toggle { font-size: 0.8rem; padding: 6px 12px; }
+            .box { padding: 18px; }      /* 박스 여백 살짝 축소 */
+            .page { padding: 25px 15px; } 
+            
+            /* 뒤로가기 버튼 모바일 최적화 */
+            #floating-back-btn {
+                bottom: 25px; right: 25px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -769,57 +819,6 @@
             // 리스트와 아이콘에 collapsed 클래스를 토글(넣었다 뺐다)함
             list.classList.toggle('collapsed');
             icon.classList.toggle('icon-collapsed');
-        }
-		/* =========================================
-           모바일 반응형 처리 (화면 너비 768px 이하일 때 적용)
-           ========================================= */
-        @media (max-width: 768px) {
-            /* 1. 목차 리스트 모바일 세로 배치 최적화 (겹침/밀림 방지) */
-            .curriculum-list li { 
-                flex-direction: column;  /* 요소들을 가로에서 세로 배치로 변경 */
-                align-items: flex-start; /* 왼쪽 정렬 */
-                min-height: auto;        /* PC용 고정 높이 해제 */
-                padding: 15px 20px;
-                gap: 8px;                /* 위아래 간격 축소 */
-            }
-            .curriculum-list li > div {
-                width: 100%;
-                align-items: flex-start; /* 제목이 2줄이 될 경우 상단 맞춤 */
-            }
-            .lesson-title {
-                white-space: normal;     /* 제목 줄바꿈 허용 */
-                word-break: keep-all;    /* 단어 단위로 깔끔하게 줄바꿈 */
-                line-height: 1.4;
-            }
-            .lesson-desc {
-                width: 100%;
-                text-align: left;        /* 설명 우측 정렬을 좌측으로 변경 */
-                padding-left: 50px;      /* 주차 뱃지(Week Num) 너비만큼 들여쓰기 */
-                white-space: normal;     /* 설명 줄바꿈 허용 */
-                word-break: keep-all;
-                line-height: 1.4;
-                margin-top: 2px;
-            }
-
-            /* 2. 타이틀 폰트 크기 축소 */
-            .hero-title { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1.1rem; padding: 0 10px; }
-            .lecture-title { font-size: 1.8rem; }
-            h2 { font-size: 1.4rem; margin: 35px 0 20px 0; }
-            
-            /* 3. 네비게이션 & 기타 여백 조정 */
-            nav { padding: 12px 15px; }
-            .logo { font-size: 1.1rem; }
-            .theme-toggle { font-size: 0.8rem; padding: 6px 12px; }
-            .box { padding: 18px; }      /* 박스 여백 살짝 축소 */
-            .page { padding: 25px 15px; } 
-            
-            /* 뒤로가기 버튼 모바일 최적화 */
-            #floating-back-btn {
-                bottom: 25px; right: 25px;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
         }
     </script>
 </body>
